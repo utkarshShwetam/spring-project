@@ -24,7 +24,7 @@ public class CustomerService {
         return customerDAO.getCustomerById(id).orElseThrow(() -> new ExceptionsHandler.ResourceNotFound("customer with id [%s] not found".formatted(id)));
     }
 
-    public void addCustomer(CustomerRegisterRequest customerRegisterRequest) {
+    public void insertCustomer(CustomerRegisterRequest customerRegisterRequest) {
         // If email exists throw exception
         if(customerDAO.existsCustomerByEmail(customerRegisterRequest.email()))
             throw new ExceptionsHandler.DuplicateResourceFound("email already taken");
@@ -40,7 +40,7 @@ public class CustomerService {
         customerDAO.insertCustomer(new Customer(customerRegisterRequest.name(), customerRegisterRequest.email(), customerRegisterRequest.age()));
     }
 
-    public void deleteCustomer(Integer id) {
+    public void deleteCustomerById(Integer id) {
         if(!customerDAO.existsCustomerById(id))
             throw new ExceptionsHandler.ResourceNotFound("customer with id [%s] not found".formatted(id));
         // Delete customer requested

@@ -26,12 +26,12 @@ public class CustomerController {
 
     @PostMapping("")
     public void addCustomer(@RequestBody CustomerRegisterRequest customerRegisterRequest) {
-        customerService.addCustomer(customerRegisterRequest);
+        customerService.insertCustomer(customerRegisterRequest);
     }
 
     @DeleteMapping("{id}")
     public void deleteCustomer(@PathVariable("id") Integer id) {
-        customerService.deleteCustomer(id);
+        customerService.deleteCustomerById(id);
     }
 
     @PutMapping("{id}")
